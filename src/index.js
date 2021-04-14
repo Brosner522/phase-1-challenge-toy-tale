@@ -2,25 +2,38 @@ let addToy = false;
 
 const toyName = document.createElement("h2")
   // h2.innerText.toy.name
-const toyImage = document.createElement("img")
-  toyImage.className = "toy-avatar"
-const toyLikes = document.createElement("p")
-
-const submit = document.createElement("button")
+  const toyLikes = document.createElement("p")
+  
+  const submit = document.createElement("button")
   submit.className = "like-btn"
   submit.id = "[toy_id]"
-const toyForm = document.createElement("form")
+  const toyForm = document.createElement("form")
+  
+  const toyCollection = document.querySelector("#toy-collection")
+  
+  // console.log(toyCollection)
+  
+  // const imgToDiv = () => {
+    fetch("http://localhost:3000/toys")
+    .then(res => res.json())
+    // console.log("this works")
+    .then((toyArray) => {
+      toyArray.forEach(function(toyObj){
+      let toyCard = document.createElement ("div")
+      let toyImage = document.createElement("img")
+        toyImage.className = "toy-avatar"
+        toyCard.className = "card" 
+        toyCard.src = toyObj.image 
+      toyCard.append(toyImage) 
+      toyCollection.append(toyCard)
+    });
+  });
+// }
+// console.log(imgToDiv)
 
-
-fetch("http://localhost:3000/toys")
-  .then(res => res.json())
-  console.log("this works")
-  .then((toyArray) => {
-    toyArray.forEach(function(toyObj){
-    turnToyObjHtml(toyObj)
-    })
-  })
-
+//  fetch ("http://localhost:3000/toys"), 
+//   method:"POST"
+//   headers: 
 
 document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector("#new-toy-btn");
