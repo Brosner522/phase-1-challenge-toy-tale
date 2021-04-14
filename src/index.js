@@ -15,14 +15,19 @@ const toyForm = document.createElement("form")
 fetch("http://localhost:3000/toys")
   .then(res => res.json())
   console.log("this works")
-  // .then(res)
+  .then((toyArray) => {
+    toyArray.forEach(function(toyObj){
+    turnToyObjHtml(toyObj)
+    })
+  })
 
-// Added code to test
-// Second line added
+
 document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector("#new-toy-btn");
   const toyFormContainer = document.querySelector(".container");
   addBtn.addEventListener("click", () => {
+    
+    
     // hide & seek with the form
     addToy = !addToy;
     if (addToy) {
